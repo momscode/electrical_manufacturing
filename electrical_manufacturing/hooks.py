@@ -33,10 +33,13 @@ doctype_js = {
     "Purchase Receipt" : "public/js/doctype_js/purchase_receipt.js",
     "Quotation" : "public/js/doctype_js/quotation.js",
     "Work Order" : "public/js/doctype_js/work_order.js",
-    "Lead" : "public/js/doctype_js/lead.js"
+    "Lead" : "public/js/doctype_js/lead.js",
+    "BOM" : "public/js/doctype_js/bom.js",
+    "Sales Order":"public/js/doctype_js/sales_order.js",
+    "Salary Slip":"public/js/doctype_js/salary_slip.js",
     }
 
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {"Opportunity":"public/js/doctype_js/opportunity_list.js",}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -88,13 +91,19 @@ doctype_js = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
+doc_events = {
+    "BOM": {
+        "on_change":"electrical_manufacturing.electrical_manufacturing.doctype.bom.custom_bom.on_BOM_after_submit"
+    },
+    "Sales Order":{
+        "on_submit":"electrical_manufacturing.electrical_manufacturing.doctype.sales_order.sales_order.on_sales_order_on_submit"
+    }
 # 	"*": {
 # 		"on_update": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
 #	}
-# }
+ }
 
 # Scheduled Tasks
 # ---------------
@@ -135,4 +144,4 @@ doctype_js = {
 # override_doctype_dashboards = {
 # 	"Task": "electrical_manufacturing.task.get_dashboard_data"
 # }
-
+fixtures = ["Custom Field"]
